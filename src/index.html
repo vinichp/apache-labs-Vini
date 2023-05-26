@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rmerces LABS</title>
+    <title>Vini LABS</title>
 </head>
 <body>
     <h1>TESTE SITE</h1>
+    
+    docker file
+FROM ubuntu:18.04
+
+RUN apt-get update && \
+  apt-get -y install apache2  ##instlaa o apache
+
+RUN rm -rf /var/lib/apt/lists/*  ##limpa o temp do apt-update para img ficar mais leve
+
+COPY src/ /var/www/html/ ##copia o index para a pasta do apache publicar
+
+EXPOSE 80 ##expor porta 80
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 </body>
 </html>
